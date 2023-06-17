@@ -1,0 +1,21 @@
+<?php
+
+/** @var \Magebit\PageListWidget\Block\Widget\PageListWidget $block */ ?>
+<?php if ($block->getTitle()) : ?>
+    <h2><?= $block->escapeHtml($block->getTitle()) ?></h2>
+<?php endif; ?>
+
+<?php $cmsPages = $block->getCmsPages(); ?>
+<?php if (!empty($cmsPages)) : ?>
+    <ul>
+        <?php foreach ($cmsPages as $cmsPage) : ?>
+            <li>
+                <a href="<?= $block->getUrl('cms/page/view', ['page_id' => $cmsPage['id']]) ?>">
+                    <?= $block->escapeHtml($cmsPage['title']) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else : ?>
+    <p>No CMS pages available.</p>
+<?php endif; ?>
